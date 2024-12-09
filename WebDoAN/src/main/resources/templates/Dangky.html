@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assers/css/styteLogin.css">
+    <title>Đăng Kí</title>
+</head>
+<body>
+
+          <div class="formContainer">
+               <form id="validate_form" action="signup" method="post">
+                  <h3>Đăng Kí</h3>
+                  <input type="text" name="name" id="" placeholder="Nhập Tên của bạn" required>
+                  <input type="email" name="email" id="" placeholder="Nhập Email" required>
+                  <input type="password" name="pasword" id="" placeholder="Nhập Password" required>
+                  <input type="password" name="repasword" id="" placeholder="Nhập lại Password" required>
+                  <input type="submit" value="Đăng Kí" name="submit" class="form_btn">
+                  <p>Nếu đã có tài khoản?<a href="Login.jsp"> Đăng Nhập</a></p>
+               </form>
+          </div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<script src="./assers/js/validattion.js"></script>

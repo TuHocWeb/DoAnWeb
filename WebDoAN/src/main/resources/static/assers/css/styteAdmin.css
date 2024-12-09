@@ -1,0 +1,174 @@
+:root
+{
+    --bg-black-900:#f2f2fc;
+    --bg-black-100:#fdf9ff;
+    --bg-black-50:#e8dfec;
+    --text-black-900:#302e4d;
+    --text-black-700:#504e70;
+}
+body
+{
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    font-size: 16px;
+}
+*
+{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+ul
+{
+    list-style: none;
+}
+.section
+{
+    background: var(--bg-black-900);
+    min-height:100vh ;
+    display: block;
+    padding: 0 30px;
+    opacity: 1;
+}
+.maint-content
+{
+    padding-left: 270px;
+}
+.padd-15
+{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.container
+{
+    max-width: 1100px;
+    width: 100%;
+    margin: auto;
+}
+.section .container
+{
+    padding-top: 60px;
+    padding-bottom: 70px;
+}
+.section-title
+{
+    flex:0 0 100%;
+    max-width: 100%;
+}
+.section-title h2
+{
+    font-size: 30px;
+    margin-left: 20px;
+    font-weight: 500;
+}
+.maint-content .image img
+{
+    width: 100%;
+    height: 800px;
+}
+
+
+/* aside */
+.aside
+{
+    width: 270px;
+    background: var(--bg-black-100);
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    border-right: 1px solid var(--bg-black-50);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+.aside .logo
+{
+    position: absolute;
+    top:50px;
+    font-size: 50px;
+    text-transform: capitalize;
+}
+.aside .logo a
+{
+    color:var(--text-black-900);
+    font-weight: 700;
+    padding: 15px 20px;
+    font-size: 30px;
+    position: relative;
+}
+.aside .nav
+{
+    margin-top: 50px;
+}
+.aside .nav li
+{
+    margin-bottom: 20px;
+    display: block;
+}
+.aside .nav li a
+{
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    padding: 5px 15px;
+    border-bottom: 1px solid var(--bg-black-50);
+}
+/* Danh mục */
+table, th, td{
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
+table{
+    border-collapse:collapse;
+    width:100%;
+    margin-top: 20px;
+}
+th, td{
+    text-align:left;
+    padding:20px;
+}
+.btn_danhmuc
+{
+    float: right;
+    margin-top: -30px;
+    background: rgb(102, 102, 230);
+    padding: 5px 25px;
+    text-decoration: none;
+    color: #fff;
+}
+.danhmuc
+{
+    box-shadow: 0 0 10px  rgba(0,0,0,0.3);
+}
+
+.thucdon
+{
+    margin-top: 300px;
+    box-shadow: 0 0 10px  rgba(0,0,0,0.3);
+}
+.donhang
+{
+    margin-top: 300px;
+    box-shadow: 0 0 10px  rgba(0,0,0,0.3);
+}
+.khachhang
+{
+    margin-top: 300px;
+    box-shadow: 0 0 10px  rgba(0,0,0,0.3);
+}
+.nhanvien
+{
+    margin-top: 300px;
+    box-shadow: 0 0 10px  rgba(0,0,0,0.3);
+}
+.binhluan
+{
+    margin-top: 300px;
+    box-shadow: 0 0 10px  rgba(0,0,0,0.3);
+}

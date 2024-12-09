@@ -1,0 +1,239 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+nav
+{
+    height: 66.95px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    right: 0;
+    left: 0;
+    background: #fff;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+nav .logo img
+{
+  width: 100px;
+  cursor: pointer;
+  margin: 7px 0;
+}
+#nav,.subnav
+{
+  list-style-type: none;
+}
+#nav>li
+{
+  display: inline-block;
+}
+#nav li
+{
+  position: relative;
+}
+#nav> li> a
+{
+  color: black;
+}
+#nav li a
+{
+    display:block;
+    line-height: 30px;
+    text-decoration: none;
+    padding: 0 25px;
+}
+#nav >li:hover >a
+{
+ color:#fac031
+}
+#nav .subnav
+{
+  display: none;
+  width: 150px;
+  position: absolute;
+  top:100%;
+  left: 0;
+  background-color:#fff;
+  box-shadow: 0 0 10px  rgba(0,0,0,0.3);
+}
+#nav .subnav a
+{
+  color:#000 ;
+  padding:0 12px ;
+  line-height: 38px;
+}
+#nav .subnav li:hover
+{
+  color:#fac031;
+  background-color: #ccc
+}
+#nav li:hover .subnav
+{
+  display: block;
+}
+  
+.icon i{
+  font-size: 18px;
+  color: #000;
+  margin:0 5px ;
+  cursor: pointer;
+}
+.icon i:hover
+{
+  color:#fac031
+}
+
+/* Banner */
+.banner_bg
+{
+    width: 100%;
+    height: 50vh;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/assers/image/banner_bg.jpeg);
+    background-size: cover;
+    background-position: center;
+}
+.banner_bg h1
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: #fff;
+  position: relative;
+  top: 50%;
+}
+.banner_bg h1 span
+{
+    color: #fac031;
+    margin-left: 15px;
+}
+
+/* Thuc don */
+.menu
+{
+  width: 100%;
+  padding: 70px 0;
+}
+.menu h1
+{
+  font-size: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.menu h1 span
+{
+  color: #fac031;
+  margin-left: 15px;
+  font-family: mv boli;
+}
+.menu .menu_box
+{
+  width: 95%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap:20px;
+}
+.menu .menu_box .menu_card
+{
+  width: 325px;
+  height: 480px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.menu .menu_box .menu_card .menu_image
+{
+  width: 300px;
+  height: 245px;
+  margin:0 auto ;
+}
+.menu .menu_box .menu_card .menu_image img
+{
+  width: 100%;
+  height: 100%;
+  transition: 0.3s;
+}
+.menu .menu_box .menu_card .menu_image:hover img
+{
+  transform: scale(1.1);
+}
+.menu .menu_box .menu_card .small_card
+{
+   width: 45px;
+   height: 45px;
+   float: right;
+   position: relative;
+   top: -240px;
+   right: -8px;
+   border-radius: 7px;
+}
+.menu .menu_box .menu_card .menu_info h2
+{
+   width: 60%;
+   text-align: center;
+   margin: 10px auto 10px auto;
+   font-size: 25px;
+   color: #fac031;
+}
+.menu .menu_box .menu_card .menu_info p
+{
+  text-align: center;
+  margin-top: 8px;
+  line-height: 21px;
+}
+.menu .menu_box .menu_card .menu_info h3
+{
+  text-align: center;
+  margin-top: 10px;
+}
+.menu .menu_box .menu_card .menu_info .menu_btn
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  background: #000;
+  padding: 8px 10px;
+  margin: 20px 80px;
+}
+
+/* footer */
+footer {
+    width: 110%;
+    padding: 30px 0 0 20px;
+    background: #eee;
+  }
+  footer .footer_main
+  {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    
+  }
+  footer .footer_main .footer_tag
+  {
+    text-align: center;
+  }
+  footer .footer_main .footer_tag h2
+  {
+    color: #000;
+    margin-bottom: 25px;
+  }
+  footer .footer_main .footer_tag i
+  {
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  footer .footer_main .footer_tag i:hover
+  {
+    color: #fac031;
+  }

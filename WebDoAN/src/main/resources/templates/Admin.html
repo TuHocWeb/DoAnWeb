@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/assers/css/styteAdmin.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+    <!-- Main Contain Start -->
+    <div class="main-container">
+         <div class="aside">
+            <div class="logo">
+                <a href="#"><span>Admin</span></a>
+            </div>
+            <ul class="nav">
+                <li><a href="#" class="active"><i class="fa fa-home"></i> Trang Chủ</a></li>
+                <li><a th:href="@{/danhmuc}"><i class="fa fa-list"></i> Quản lí danh mục</a></li>
+                <li><a th:href="@{/ManagerProduct}"><i class="fa-regular fa-cake-candles"></i> Quản lí Món Ăn</a></li>
+                <li><a href="donhang"><i class="fa-regular fa-clipboard"></i> Quản lí đơn hàng</a></li>
+                <li><a href="adminpeople"><i class="fa fa-user"></i> Quản lí người dùng</a></li>
+                <li><a href="adminfeedback"><i class="fa fa-comments"></i> Quản lí bình luận</a></li>
+            </ul>
+         </div>
+         <div class="maint-content">
+             <section class="home section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="home-info">
+                                <div class="image">
+                                    <img src="./assers/image/blog_1.jpeg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+         </div>
+    </div>
+    <!-- Main Contain End -->
+</body>
+</html>
