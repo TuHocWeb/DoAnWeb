@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.WebDoAN.Repo.CategoryRepo;
 import com.example.WebDoAN.Repo.ProductRepo;
@@ -26,16 +27,24 @@ public class ProductService {
 	{
 		return productRepo.findAll();
 	}
+	public Product findProductByid(Integer id)
+	{
+		return productRepo.getById(id);
+	}
+	@Transactional
 	public void addProduct(Product product,Integer category_id)
 	{
 		Category category=categoryRepo.findCategoryById(category_id);
 		if(category!=null)
 		{
 			product.setCategory(category);
+			category.getProducts().add(product);
 			productRepo.save(product);
 		}
+		else
+		{
         throw new EntityNotFoundException("Category với  " + category_id + " khôn tìm thấy");
-	
+		}
 	}
 	  public void removeProduct(Integer productId)
       {

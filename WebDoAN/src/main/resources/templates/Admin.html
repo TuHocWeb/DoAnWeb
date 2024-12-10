@@ -13,12 +13,12 @@
     <div class="main-container">
          <div class="aside">
             <div class="logo">
-                <a href="#"><span>Admin</span></a>
+                <a href="#">Welcome <span th:text="${currentuser.getFullname()}"></span></a>
             </div>
             <ul class="nav">
                 <li><a href="#" class="active"><i class="fa fa-home"></i> Trang Chủ</a></li>
                 <li><a th:href="@{/danhmuc}"><i class="fa fa-list"></i> Quản lí danh mục</a></li>
-                <li><a th:href="@{/ManagerProduct}"><i class="fa-regular fa-cake-candles"></i> Quản lí Món Ăn</a></li>
+                <li><a th:href="@{/monan}"><i class="fa-regular fa-cake-candles"></i> Quản lí Món Ăn</a></li>
                 <li><a href="donhang"><i class="fa-regular fa-clipboard"></i> Quản lí đơn hàng</a></li>
                 <li><a href="adminpeople"><i class="fa fa-user"></i> Quản lí người dùng</a></li>
                 <li><a href="adminfeedback"><i class="fa fa-comments"></i> Quản lí bình luận</a></li>

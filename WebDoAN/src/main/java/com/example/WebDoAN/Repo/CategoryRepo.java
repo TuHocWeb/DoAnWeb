@@ -6,5 +6,6 @@ import com.example.WebDoAN.entity.Category;
 
 public interface CategoryRepo extends JpaRepository<Category, Integer> {
 	
+  public Category findByName(String name);
   public Category findCategoryById(Integer id);
 }
