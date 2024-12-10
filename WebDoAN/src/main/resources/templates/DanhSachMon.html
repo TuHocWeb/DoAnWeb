@@ -64,7 +64,7 @@
                          <h2 th:text="${product.title}"></h2>
                          <p th:text="${product.description}"></p>
                          <h3 th:text="${product.price}"></h3>
-                         <a href="Product1.html" class="menu_btn">Mua Ngay</a>
+                         <a th:href="@{/addCartItem/{id}(id=${product.id})}" class="menu_btn">Mua Ngay</a>
                     </div>
               </div>
               </th:block>

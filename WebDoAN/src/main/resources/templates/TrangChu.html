@@ -38,7 +38,7 @@
              </li>
           </ul>
           <div class="icon">
-            <i class="fa-solid fa-cart-shopping"></i>
+            <a th:href="@{/viewCart}"><i class="fa-solid fa-cart-shopping"></i></a>
           </div>
           <div th:if="${userpeople != null}" class="d-flex" role="search">
             <a th:href="@{/logout}"><button class="btn btn-danger" type="submit" style= >Thoát</button></a>

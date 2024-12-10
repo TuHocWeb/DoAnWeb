@@ -29,7 +29,11 @@ public class ProductService {
 	}
 	public Product findProductByid(Integer id)
 	{
-		return productRepo.getById(id);
+		try {
+	        return productRepo.getById(id);
+	    } catch (EntityNotFoundException e) {
+	        return null;
+	    }
 	}
 	@Transactional
 	public void addProduct(Product product,Integer category_id)

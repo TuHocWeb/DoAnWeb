@@ -1,11 +1,15 @@
 package com.example.WebDoAN.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +27,9 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name = "role_id",nullable = false)
 	private Role role;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Orders> orders;
 
 	public int getId() {
 		return id;
@@ -71,5 +78,18 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
+	public List<Orders> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	
 }

@@ -1,5 +1,8 @@
 package com.example.WebDoAN.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +29,17 @@ public class Product {
 	private int stock;
 	private String thumbnail;
 	private String description;
+	
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<OrderDetails> orderDetails;
+	
+	
+	public List<OrderDetails> getOrderDetails() {
+		return orderDetails;
+	}
+	public void setOrderDetails(List<OrderDetails> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -68,7 +82,5 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
 
 }
