@@ -97,7 +97,7 @@ html
 .icon{
   position: relative;
   right: 20px;
-  left: 150px;
+  left: 110px;
 }
 .icon i{
   font-size: 18px;
@@ -105,9 +105,41 @@ html
   margin:0 10px;
   cursor: pointer;
 }
-.icon i:hover
-{
-  color:#fac031
+.cart-btn {
+    background-color: #007bff; /* Màu xanh dương nhẹ */
+    border: none; /* Loại bỏ viền của nút */
+    color: white; /* Màu chữ trắng cho nút */
+    border-radius: 12px; /* Bo tròn nút giỏ hàng */
+    padding: 20px 20px; /* Kích thước của nút */
+    font-size: 18px; /* Kích thước chữ */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà khi hover */
+}
+
+.cart-btn:hover {
+    background-color: #0056b3; /* Màu nền khi hover (xanh dương đậm) */
+    cursor: pointer; /* Hiển thị con trỏ chuột dạng tay khi hover */
+}
+
+.cart-quantity {
+    width: 20px; /* Kích thước của vòng tròn chứa số lượng */
+    height: 20px; /* Kích thước của vòng tròn chứa số lượng */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px; /* Kích thước chữ bên trong số lượng */
+    color: white; /* Màu chữ của số lượng */
+    background-color: #f77f00; /* Màu cam nhẹ cho số lượng */
+    border-radius: 50%; /* Bo tròn vòng tròn */
+    font-weight: bold; /* Chữ đậm cho số lượng */
+}
+
+.quantity-text {
+    font-weight: bold; /
+}
+
+.cart-quantity::before,
+.cart-quantity::after {
+    content: none;
 }
 
 #slider {

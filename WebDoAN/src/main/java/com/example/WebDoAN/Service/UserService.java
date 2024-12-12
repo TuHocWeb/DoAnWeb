@@ -25,9 +25,21 @@ public class UserService {
 	{
 		return userRepo.findAll();
 	}
+	public void deletePeople(User user)
+	{
+		userRepo.delete(user);
+	}
+	public void CreatUsẻ(User user)
+	{
+		userRepo.save(user);
+	}
 	public User findbyUsername(String username)
 	{
 		return userRepo.findByUsername(username);
+	}
+	public User findById(Integer id)
+	{
+		return userRepo.getById(id);
 	}
 	public int verifyLogin(String username,String passworld)
 	{

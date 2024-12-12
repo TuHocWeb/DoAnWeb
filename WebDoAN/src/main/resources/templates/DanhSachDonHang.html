@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Đơn Hàng</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Danh sách Đơn Hàng</h1>
+
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Mã Đơn Hàng</th>
+                    <th scope="col">Ngày Tạo</th>
+                    <th scope="col">Tổng Tiền</th>
+                    <th scope="col">Trạng Thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.id}"></td>
+                    <td th:text="${#dates.format(order.order_date, 'yyyy-MM-dd HH:mm')}"></td>
+                    <td th:text="${order.total_money}"></td>
+                    <td th:text="${order.status.getStatusDescription()}"></td>
+                    <td>
+                        <button class="btn btn-danger cancel-btn" th:data-order-id="${order.id}" th:if="${order.status.name() != 'CANCELED'}">Hủy Đơn</button>
+                        <div class="cancel-form" style="display: none;">
+                            <form th:action="@{/order/cancel/{orderId}(orderId=${order.id})}" method="post">
+                                <div class="form-group">
+                                    <label for="cancellationReason" aria-placeholder="Bắt Buộc">Lý do hủy đơn hàng:</label>
+                                    <textarea class="form-control" id="cancellationReason" name="cancellationReason" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-danger">Hủy Đơn</button>
+                                <button type="button" class="btn btn-secondary cancel-close-btn">Đóng</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Xử lý sự kiện click để hiện form hủy đơn
+        $(document).ready(function() {
+            $(".cancel-btn").click(function() {
+                var orderId = $(this).data("order-id");
+                $(this).hide(); // Ẩn nút "Hủy đơn"
+                $(this).closest("td").find(".cancel-form").show(); // Hiện form nhập lý do
+            });
+
+            // Xử lý sự kiện đóng form
+            $(".cancel-close-btn").click(function() {
+                $(this).closest(".cancel-form").hide(); // Ẩn form nhập lý do
+                $(this).closest("td").find(".cancel-btn").show(); // Hiện lại nút "Hủy đơn"
+            });
+        });
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

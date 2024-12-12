@@ -8,17 +8,20 @@
     <title>Đăng Nhập</title>
 </head>
 <body>
+ <div th:if="${message != null}" class="alert alert-success" role="alert">
+    			<span th:text="${message}"></span>
+</div>
 
     <div class="formContainer">
         <form id="validate_form" th:action="@{/verify}" method="post">
-        	<div th:if="${error != null}" class="alert alert-danger" role="alert">
+            <h3>Đăng Nhập</h3>
+            <div th:if="${error != null}" class="alert alert-danger" role="alert">
     			<span th:text="${error}"></span>
 			</div>
-            <h3>Đăng Nhập</h3>
             <input type="text" name="username" id="" placeholder="Nhập Username của bạn" required>
             <input type="password" name="password" id="" placeholder="Nhập Password của bạn" required>
             <input type="submit" value="Đăng Nhập" class="form_btn">
-            <p>Nếu không có tài khoản ?<a href="Dangky.jsp"> Đăng Ký</a></p>
+            <p>Nếu không có tài khoản ?<a th:href="@{/resign}"> Đăng Ký</a></p>
         </form>
     </div>
 </body>

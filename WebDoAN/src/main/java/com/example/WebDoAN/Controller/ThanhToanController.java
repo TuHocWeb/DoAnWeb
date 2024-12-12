@@ -1,5 +1,7 @@
 package com.example.WebDoAN.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,6 +52,9 @@ public class ThanhToanController {
 		{
 		Orders orders=ordersService.addOrders(ten, diachi, sdt, user, cart);
 		model.addAttribute("thanhcong", ordersService.findById(orders.getId()));
+		List<Orders> orderss = ordersService.findByuser(user);
+	    user.setOrders(orderss);
+	    session.setAttribute("user", user); 
 		return "thanhtoanthanhcong";
 		}
 		catch(Exception e)

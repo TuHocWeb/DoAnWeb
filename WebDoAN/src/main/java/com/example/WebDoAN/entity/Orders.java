@@ -3,6 +3,7 @@ package com.example.WebDoAN.entity;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,14 +35,20 @@ public class Orders {
 	private String phone_number;
 	private String address;
 	@Column(name = "order_date")
-    private LocalDate order_date;
+    private Date order_date;
 	private double total_money;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+    private String huydonhang;
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetails> orderDetails=new ArrayList<OrderDetails>();
     
-    
+	public String getHuydonhang() {
+		return huydonhang;
+	}
+	public void setHuydonhang(String huydonhang) {
+		this.huydonhang = huydonhang;
+	}
 	public List<OrderDetails> getOrderDetails() {
 		return orderDetails;
 	}
@@ -78,10 +85,10 @@ public class Orders {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public LocalDate getOrder_date() {
+	public Date getOrder_date() {
 		return order_date;
 	}
-	public void setOrder_date(LocalDate order_date) {
+	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
 	}
 	public double getTotal_money() {
@@ -97,7 +104,9 @@ public class Orders {
 		this.status = status;
 	}
 
-    
+    public String getStatusDescription() {
+        return status != null ? status.getStatusDescription() : "Chưa xác định";
+    }
     
 
 }

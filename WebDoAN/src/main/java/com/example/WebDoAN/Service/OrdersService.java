@@ -2,6 +2,7 @@ package com.example.WebDoAN.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -54,6 +55,14 @@ public class OrdersService {
 			return null;
 		}
 	}
+	public void cretateoreder(Orders orders)
+	{
+		ordersRepo.save(orders);
+	}
+	public List<Orders> findByuser(User user)
+	{
+		return ordersRepo.findByUser(user);
+	}
 	@Transactional
 	public Orders addOrders(String hoten, String diachi, String sdt, User user, Cart cart) {
 	    Orders orders = new Orders();
@@ -62,7 +71,7 @@ public class OrdersService {
 	    orders.setPhone_number(sdt);
 	    orders.setStatus(OrderStatus.PENDING);
 	    orders.setUser(user);
-	    orders.setOrder_date(LocalDate.now());
+	    orders.setOrder_date(Date.valueOf(LocalDate.now()));
 	    orders.setTotal_money(cart.totalMoney());
 
 	    Collection<CartItem> cartItems = cart.getAllItem();

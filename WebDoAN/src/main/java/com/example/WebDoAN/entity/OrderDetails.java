@@ -62,6 +62,12 @@ public class OrderDetails {
 	public void setTotal_money(double total_money) {
 		this.total_money = total_money;
 	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 	
 	
 }

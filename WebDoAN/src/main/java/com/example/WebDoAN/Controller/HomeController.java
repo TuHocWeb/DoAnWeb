@@ -15,10 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.WebDoAN.Service.CategoryService;
+import com.example.WebDoAN.Service.OrdersService;
 import com.example.WebDoAN.Service.ProductService;
+import com.example.WebDoAN.Service.RoleService;
+import com.example.WebDoAN.Service.UserService;
 import com.example.WebDoAN.entity.Cart;
 import com.example.WebDoAN.entity.CartItem;
+import com.example.WebDoAN.entity.OrderStatus;
+import com.example.WebDoAN.entity.Orders;
 import com.example.WebDoAN.entity.Product;
+import com.example.WebDoAN.entity.Role;
 import com.example.WebDoAN.entity.User;
 
 import jakarta.servlet.http.HttpSession;
@@ -32,21 +38,67 @@ public class HomeController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Autowired
+	private OrdersService ordersService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
+	
 	@GetMapping({"/","/home"})
 	public String Home(HttpSession session,Model model)
 	{
 		User user=(User)session.getAttribute("user");
+		Cart cart=(Cart)session.getAttribute("cart");
 		if(user!=null)
 		{
 			model.addAttribute("userpeople",user);
 		}
+		if(cart!=null)
+		{
+			model.addAttribute("cartQuantity", cart.getCount());
+		}
 		model.addAttribute("categorys", categoryService.getAllCategory());
+		
 		return "TrangChu";
 	}
 	@GetMapping("/login")
 	public String DangNhap()
 	{
 		return "DangNhap";
+	}
+	@GetMapping("/resign")
+	public String DangKy()
+	{
+		return "DangKy";
+	}
+	@PostMapping("/signup")
+	public String DangKiTaiKhoan(@RequestParam("name")String ten,@RequestParam("email")String email,@RequestParam("password")String pass,@RequestParam("repasword")String repas,RedirectAttributes model)
+	{
+		User user=userService.findbyUsername(email);
+		if(!pass.equals(repas))
+		{
+			model.addFlashAttribute("message", "Sai Thông tin mật khẩu");
+			return "redirect:/resign";
+		}
+		if(user!=null)
+		{
+			model.addFlashAttribute("message", "Đã Tồn tại tài khoản vui lòng thử lại.");
+			return "redirect:/resign";
+		}
+		User user2=new User();
+		user2.setFullname(ten);
+		user2.setUsername(email);
+		user2.setPassword(pass);
+		user2.setEnabled(true);
+		Role role=roleService.findById(2);
+		user2.setRole(role);
+		userService.CreatUsẻ(user2);
+		model.addFlashAttribute("message", "Đăng kí thành công bạn có thể đăng nhập.");
+		return "redirect:/login";
+		
 	}
 	@GetMapping("/logout")
 	public String ThoatDangNhap(HttpSession session)
@@ -59,6 +111,11 @@ public class HomeController {
 	public String categoryById(@PathVariable("id") Integer id,Model model,HttpSession session)
 	{
 		User user=(User)session.getAttribute("user");
+		Cart cart=(Cart)session.getAttribute("cart");
+		if(cart!=null)
+		{
+			model.addAttribute("cartQuantity", cart.getCount());
+		}
 		if(user!=null)
 		{
 			model.addAttribute("userpeople",user);
@@ -137,6 +194,35 @@ public class HomeController {
 	public String BackBuy()
 	{
 		return "redirect:/home";
+	}
+	@GetMapping("/danhsachdon")
+	public String DanhSachDon(HttpSession session,Model model)
+	{
+		User user=(User)session.getAttribute("user");
+		if(user!=null)
+		{
+			List<Orders> order=user.getOrders();
+			model.addAttribute("orders", order);
+			return "DanhSachDonHang";
+		}
+		model.addAttribute("message", "Đơn hàng của bạn đang trống");
+		return "DanhSachDonHang";
+
+	}
+	@PostMapping("/order/cancel/{orderId}")
+	public String huydanhsachdonhang(@PathVariable("orderId") Integer id,@RequestParam("cancellationReason")String lydohuy,HttpSession session)
+	{
+		Orders orders=ordersService.findById(id);
+        orders.setStatus(OrderStatus.CANCELED);
+        orders.setHuydonhang(lydohuy);
+        ordersService.cretateoreder(orders);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            List<Orders> orderList = ordersService.findByuser(user);
+            user.setOrders(orderList);  
+            session.setAttribute("user", user);
+        }
+        return "redirect:/danhsachdon";
 	}
 	
 }

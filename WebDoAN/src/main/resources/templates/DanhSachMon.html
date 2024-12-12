@@ -28,8 +28,15 @@
               <a href="#">Liên Hệ</a>
              </li>
           </ul>
-          <div class="icon">
-            <i class="fa-solid fa-cart-shopping"></i>
+          	 <div class="icon">
+            	<a th:href="@{/viewCart}">
+   				 <button class="btn cart-btn position-relative">
+       			 <i class="fa-solid fa-cart-shopping"></i>
+       			      <span class="cart-quantity position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          		  	   <span class="quantity-text" th:text="${cartQuantity}"></span>
+        		</span>
+   				 </button>
+			</a>
           </div>
           <div th:if="${userpeople != null}" class="d-flex" role="search">
             <a th:href="@{/logout}"><button class="btn btn-danger" type="submit" >Thoát</button></a>
