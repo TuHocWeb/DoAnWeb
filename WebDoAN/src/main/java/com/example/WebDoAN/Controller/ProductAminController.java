@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.WebDoAN.Service.CategoryService;
 import com.example.WebDoAN.Service.ProductService;
@@ -25,17 +26,37 @@ public class ProductAminController {
 	private CategoryService categoryService;
 	
 	@PostMapping("/addProduct")
-	public String addProduct(@RequestParam("title")String tenmonan,@RequestParam("image")String hinhanh,@RequestParam("price")String gia,@RequestParam("stock")String soluong,@RequestParam("description")String mota,@RequestParam("category")Integer id)
+	public String addProduct(@RequestParam("title")String tenmonan,@RequestParam("image")String hinhanh,@RequestParam("price")String gia,@RequestParam("stock")String soluong,@RequestParam("description")String mota,@RequestParam("category")Integer id,RedirectAttributes model)
 	{
-		Product product=new Product();
-		product.setTitle(tenmonan);
-		product.setThumbnail(hinhanh);
-		product.setPrice(Double.parseDouble(gia));
-		product.setStock(Integer.parseInt(soluong));
-		product.setDescription(mota);
-		Category category=categoryService.findById(id);
-		productService.addProduct(product, category.getId());
-		return "redirect:/monan";
+		
+		try {
+			Integer sl=Integer.parseInt(soluong);
+			double price=Double.parseDouble(gia);
+			if(sl<1)
+			{
+				model.addFlashAttribute("error", "Phải nhập số lượng lớn hơn 0!");
+				return "redirect:/monan";
+			}
+			if(price<1)
+			{
+				model.addFlashAttribute("error", "Phải nhập tiền  lớn hơn 0!");
+				return "redirect:/monan";
+			}
+			Product product=new Product();
+			product.setTitle(tenmonan);
+			product.setThumbnail(hinhanh);
+			product.setPrice(Double.parseDouble(gia));
+			product.setStock(Integer.parseInt(soluong));
+			product.setDescription(mota);
+			Category category=categoryService.findById(id);
+			productService.addProduct(product, category.getId());
+			return "redirect:/monan";
+		}
+		catch (NumberFormatException e) {
+			model.addFlashAttribute("error", "Vui lòng nhập số hợp lệ cho số lượng và giá");
+			return "redirect:/monan";
+		}
+		
 	}
 	
 	@GetMapping("/deleteProduct/{id}")

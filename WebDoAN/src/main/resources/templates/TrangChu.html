@@ -77,9 +77,10 @@
       <div class="menu" id="Menu">
           <h1>Best<span>Seller</span></h1>
           <div class="menu_box">
+               <th:block th:each="product : ${best}">
                 <div class="menu_card">
                       <div class="menu_image">
-                           <img src="./assers/image/buger.jpg">
+                           <img th:src="${product.thumbnail}">
                       </div>
   
                       <div class="small_card">
@@ -87,54 +88,14 @@
                       </div>
   
                       <div class="menu_info">
-                           <h2>Buger</h2>
-                           <p>
-                              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                           </p>
-                           <h3>50.000đ</h3>
-                           <a href="Product1.html" class="menu_btn">Mua Ngay</a>
+                         <h2 th:text="${product.title}"></h2>
+                         <p th:text="${product.description}"></p>
+                         <h3 th:text="${product.getFormattedPrice()}"></h3>
+                         <a th:href="@{/addCartItem/{id}(id=${product.id})}" class="menu_btn">Mua Ngay</a>
                       </div>
-  
                 </div>
+                  </th:block>
   
-                <div class="menu_card">
-                  <div class="menu_image">
-                       <img src="./assers/image/Spanchi.jpg">
-                  </div>
-  
-                  <div class="small_card">
-                       <i class="fa-solid fa-heart"></i>
-                  </div>
-  
-                  <div class="menu_info">
-                       <h2>Spanchi</h2>
-                       <p>
-                          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                       </p>
-                       <h3>50.000đ</h3>
-                       <a href="Product2.html" class="menu_btn">Mua Ngay</a>
-                  </div>
-  
-                </div>
-  
-                <div class="menu_card">
-                  <div class="menu_image">
-                       <img src="./assers/image/sandwich.jpg">
-                  </div>
-  
-                  <div class="small_card">
-                       <i class="fa-solid fa-heart"></i>
-                  </div>
-  
-                  <div class="menu_info">
-                       <h2>Sandwich</h2>
-                       <p>
-                          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                       </p>
-                       <h3>50.000đ</h3>
-                       <a href="#" class="menu_btn">Mua Ngay</a>
-                  </div>
-                </div>
           </div>
      </div> 
 
@@ -198,12 +159,12 @@
                         <img src="./assers/image/review_1.png">
                     </div>
                     <div class="review_text">
-                          <h2 class="name">aaa</h2>
+                          <h2 class="name">Mỹ Hiền</h2>
                           <div class="review_social">
                             <i class="fa-brands fa-facebook-f"></i>
                             <i class="fa-brands fa-instagram"></i>
                           </div>
-                          <p>aaaa</p>
+                          <p>Ngon,tuyệt vời</p>
                     </div>
               </div>
 
@@ -220,7 +181,6 @@
          <div class="writeReview_main">
           <form action="addFeedback" method="post">
             <h1><span>Nhập nhận xét của bạn</span></h1>
-            <p class="text-danger">dsadsadas</p>
             <div class="input">
               <p>Email</p>
               <input type="text" placeholder="Email" name="emailfeed">

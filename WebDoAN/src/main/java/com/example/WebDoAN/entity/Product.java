@@ -82,5 +82,8 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	  public String getFormattedPrice() {
+	        return MoneyUtil.formatCurrency(this.price); // Sử dụng hàm static
+	   }
 
 }

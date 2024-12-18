@@ -34,7 +34,7 @@ public class ThanhToanController {
 		if(cart!=null)
 		{
 			model2.addAttribute("cartitems", cart.getAllItem());
-			model2.addAttribute("totalMoney", cart.totalMoney());
+			model2.addAttribute("totalMoney", cart.getFormattedPrice());
 			return "ThanhToan";
 		}
 		else
@@ -55,6 +55,7 @@ public class ThanhToanController {
 		List<Orders> orderss = ordersService.findByuser(user);
 	    user.setOrders(orderss);
 	    session.setAttribute("user", user); 
+	    session.removeAttribute("cart");
 		return "thanhtoanthanhcong";
 		}
 		catch(Exception e)

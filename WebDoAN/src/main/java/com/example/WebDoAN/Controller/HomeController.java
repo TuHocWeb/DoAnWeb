@@ -1,5 +1,6 @@
 package com.example.WebDoAN.Controller;
 
+import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.WebDoAN.Service.CategoryService;
+import com.example.WebDoAN.Service.OrderDetalsService;
 import com.example.WebDoAN.Service.OrdersService;
 import com.example.WebDoAN.Service.ProductService;
 import com.example.WebDoAN.Service.RoleService;
@@ -46,6 +48,8 @@ public class HomeController {
 	
 	@Autowired
 	private RoleService roleService;
+	@Autowired
+	private OrderDetalsService orderDetalsService;
 	
 	@GetMapping({"/","/home"})
 	public String Home(HttpSession session,Model model)
@@ -61,7 +65,7 @@ public class HomeController {
 			model.addAttribute("cartQuantity", cart.getCount());
 		}
 		model.addAttribute("categorys", categoryService.getAllCategory());
-		
+		model.addAttribute("best", orderDetalsService.bestSell());
 		return "TrangChu";
 	}
 	@GetMapping("/login")
@@ -133,7 +137,7 @@ public class HomeController {
 		if(cart!=null)
 		{
 			model.addAttribute("cartitems", cart.getAllItem());
-	        model.addAttribute("totalPrice", cart.totalMoney());
+	        model.addAttribute("totalPrice", cart.getFormattedPrice());
 		}
 		else
 		{
@@ -166,12 +170,18 @@ public class HomeController {
 	@PostMapping("/update-cart")
 	public String UpdateCat(HttpSession session,@RequestParam("id") Integer id,@RequestParam("quality")String sl,RedirectAttributes model)
 	{
+		Product product=productService.findProductByid(id);
 		try
 		{
 	        Integer quantity = Integer.parseInt(sl); 
 			if(quantity<1)
 			{
 				model.addFlashAttribute("error", "Số lượng phải lớn hơn hoặc bằng 1");
+				return "redirect:/viewCart";
+			}
+			if(quantity>product.getStock())
+			{
+				model.addFlashAttribute("error", "Số lượng trong kho không đủ ");
 				return "redirect:/viewCart";
 			}
 		Cart cart=(Cart)session.getAttribute("cart");
@@ -224,5 +234,10 @@ public class HomeController {
         }
         return "redirect:/danhsachdon";
 	}
+	public String formatCurrency(double amount) {
+	    DecimalFormat df = new DecimalFormat("#,###");
+	    return df.format(amount) + " VND";
+	}
+
 	
 }

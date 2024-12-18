@@ -44,5 +44,8 @@ public class Cart {
 								.mapToDouble(item->item.getQuality()*item.getProduct().getPrice())
 								.sum();
 	}
+	 public String getFormattedPrice() {
+	        return MoneyUtil.formatCurrency(this.totalMoney()); // Sử dụng hàm static
+	   }
 	
 }

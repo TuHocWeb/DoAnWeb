@@ -21,6 +21,14 @@ public class RoleService {
 	{
 		return roleRepo.findAll();
 	}
+	public void addrole(Role role)
+	{
+		roleRepo.save(role);
+	}
+	public void deleteRole(Role role)
+	{
+		roleRepo.delete(role);
+	}
 	public Role findById(Integer id)
 	{
 		return roleRepo.getById(id);

@@ -40,11 +40,11 @@
                 <span th:text="${cartItem.product.title}"></span>
             </div>
           </td>
-          <td th:text="${cartItem.product.price}"></td>
+          <td th:text="${cartItem.product. getFormattedPrice() }"></td>
           <td>
             <input type="text" name="quality" th:value="${cartItem.quality}" onblur="this.form.submit()" class="form-control" style="width: 80px;">
           </td>
-          <td th:text="${cartItem.product.price * cartItem.quality}"></td>
+          <td th:text="${cartItem.getFormattedPrice() }"></td>
           <td>
             <a th:href="@{/deleteItem/{id}(id=${cartItem.product.id})}"><button type="button" class="btn btn-danger btn-sm">Xóa</button></a>
           </td>

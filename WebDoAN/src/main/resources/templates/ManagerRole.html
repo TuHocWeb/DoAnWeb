@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ManagerPeople</title>
+        <title>ManagerRole</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,10 +24,10 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>People</b></h2>
+                            <h2>Manage <b>Role</b></h2>
                         </div>
-                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+                        <div class="col-sm-6">
+                            <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Role</span></a>
                         </div>
                     </div>
                 </div>
@@ -40,28 +40,26 @@
                                     <label for="selectAll"></label>
                                 </span>
                             </th>
-                            <th>Id</th>
-                            <th>Tên</th>
-                            <th>Email</th>
-                            <th>Chức Vụ</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <tr th:each="user :${users}">
+                            <tr th:each="role : ${roles}" >
                                 <td>
                                     <span class="custom-checkbox">
                                         <input type="checkbox" id="checkbox1" name="options[]" value="1">
                                         <label for="checkbox1"></label>
                                     </span>
                                 </td>
-                                <td th:text="${user.id}"></td>
-                                <td th:text="${user.fullname}"></td>
-                                <td th:text="${user.username}"></td>
-                                <td th:text="${user.role.name}"></td>
+                                <td th:text="${role.id}"></td>
+                                <td th:text="${role.name}"></td>
+                                <td th:text="${role.description}"></td>                          
                                 <td>
-                                	<a th:href="@{/editPeople/{id}(id=${user.id})}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a th:href="@{/deletePeople/{id}(id=${user.id})}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a th:href="@{/editRole/{id}(id=${role.id})}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a th:href="@{/deleteRole/{id}(id=${role.id})}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                     </tbody>
@@ -81,35 +79,27 @@
             <a th:href="@{/backadmin}"><button type="button" class="btn btn-primary">Back to home</button></a>
         </div>
         <!-- Edit Modal HTML -->
-           <div id="addEmployeeModal" class="modal fade">
+        <div id="addEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form th:action="@{/addPeople}" method="post">
+                    <form th:action="@{/addRole}" method="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Add User</h4>
+                            <h4 class="modal-title">Add Role</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
        
                             <div class="form-group">
+                                <label>Id</label>
+                                <input name="id" type="text" class="form-control" required>
+                            </div>
+                              <div class="form-group">
                                 <label>Name</label>
                                 <input name="name" type="text" class="form-control" required>
                             </div>
                               <div class="form-group">
-                                <label>Username</label>
-                                <input name="username" type="text" class="form-control" required>
-                            </div>
-                             <div class="form-group">
-                                <label>Password</label>
-                                <input name="password" type="text" class="form-control" required>
-                            </div>
-                              <div class="form-group">
-                                <label>Role</label>
-                                <select name="role" class="form-select" aria-label="Default select example">
-                                    <th:block th:each="role : ${roles}">
-           								 <option th:value="${role.id}" th:text="${role.name}"></option>
-      								</th:block>
-                                </select>
+                                <label>Description</label>
+                                <input name="description" type="text" class="form-control" required>
                             </div>
                         </div>
                         <div class="modal-footer">

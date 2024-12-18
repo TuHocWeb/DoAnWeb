@@ -107,6 +107,8 @@ public class Orders {
     public String getStatusDescription() {
         return status != null ? status.getStatusDescription() : "Chưa xác định";
     }
-    
+    public String getFormattedPrice() {
+        return MoneyUtil.formatCurrency(this.total_money); // Sử dụng hàm static
+   }
 
 }

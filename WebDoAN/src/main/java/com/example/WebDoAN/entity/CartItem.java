@@ -22,4 +22,12 @@ public class CartItem {
 	{
 		
 	}
+	public double tinhGia()
+	{
+		return product.getPrice()*this.quality;
+	}
+	  public String getFormattedPrice() {
+	        return MoneyUtil.formatCurrency(this.tinhGia()); // Sử dụng hàm static
+	   }
+
 }

@@ -54,7 +54,7 @@
                 <td th:text="${orders.phone_number}"></td>
                 <td th:text="${orders.address}"></td>
                 <td th:text="${orders.order_date != null ? #dates.format(orders.order_date, 'yyyy-MM-dd HH:mm') : 'N/A'}"></td>
-                <td th:text="${orders.total_money} + ' VND'"></td>
+                <td th:text="${orders.getFormattedPrice()}"></td>
                 <td>
                     <!-- Trạng thái đơn hàng -->
                     <span class="badge badge-info" th:text="${orders.status}"></span>

@@ -14,6 +14,7 @@ import com.example.WebDoAN.Service.CategoryService;
 import com.example.WebDoAN.Service.OrderDetalsService;
 import com.example.WebDoAN.Service.OrdersService;
 import com.example.WebDoAN.Service.ProductService;
+import com.example.WebDoAN.Service.RoleService;
 import com.example.WebDoAN.entity.OrderDetails;
 import com.example.WebDoAN.entity.OrderStatus;
 import com.example.WebDoAN.entity.Orders;
@@ -36,6 +37,9 @@ public class AdminController {
 	
 	@Autowired
 	private OrdersService ordersService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	
 	@GetMapping("/admin")
@@ -77,6 +81,12 @@ public class AdminController {
 		model.addAttribute("orders", list);
 		model.addAttribute("order", orders);
 		return "chitiethoadon";
+	}
+	@GetMapping("/chucvu")
+	public String ChucVu(Model model)
+	{
+		model.addAttribute("roles", roleService.getAllRole());
+		return "ManagerRole";
 	}
 	@GetMapping("/backdanhsach")
 	public String backdanhsach()

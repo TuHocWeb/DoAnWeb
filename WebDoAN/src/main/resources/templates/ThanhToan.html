@@ -57,7 +57,7 @@
                         <li th:each="cartItem : ${cartitems}" class="list-group-item d-flex justify-content-between align-items-center">
                             <img th:src="${cartItem.product.thumbnail}"  class="img-thumbnail me-2" style="width: 50px; height: 50px;">
 							<span th:text="${cartItem.product.title}"></span>
-                            <span class="badge bg-primary rounded-pill" th:text="${cartItem.quality * cartItem.product.price}"> VND</span>
+                            <span class="badge bg-primary rounded-pill" th:text="${cartItem.getFormattedPrice() }"> </span>
                         </li>
                     </ul>
                     <div class="mb-3">

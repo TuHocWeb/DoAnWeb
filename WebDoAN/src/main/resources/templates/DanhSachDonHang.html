@@ -23,7 +23,7 @@
                 <tr th:each="order : ${orders}">
                     <td th:text="${order.id}"></td>
                     <td th:text="${#dates.format(order.order_date, 'yyyy-MM-dd HH:mm')}"></td>
-                    <td th:text="${order.total_money}"></td>
+                    <td th:text="${order.getFormattedPrice()}"></td>
                     <td th:text="${order.status.getStatusDescription()}"></td>
                     <td>
                         <button class="btn btn-danger cancel-btn" th:data-order-id="${order.id}" th:if="${order.status.name() != 'CANCELED'}">Hủy Đơn</button>

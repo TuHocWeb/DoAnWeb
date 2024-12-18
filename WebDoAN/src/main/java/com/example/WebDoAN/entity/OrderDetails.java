@@ -68,6 +68,12 @@ public class OrderDetails {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+	 public String getFormattedPrice() {
+	        return MoneyUtil.formatCurrency(this.price); // Sử dụng hàm static
+	   }
+	 public String getFormattedPriceTotal_money() {
+	        return MoneyUtil.formatCurrency(this.total_money); // Sử dụng hàm static
+	   }
 	
 	
 }
